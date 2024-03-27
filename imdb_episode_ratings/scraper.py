@@ -7,7 +7,7 @@ import time
 def get_static_html ( search_url ) : 
 	## create the soup object for the page 
 	try:
-		r_page = requests.get ( search_url )
+		r_page = requests.get ( search_url,  timeout=60)
 	except:
 		print("Connection refused by the server..")        
 		time.sleep(5)

@@ -25,7 +25,7 @@ def get_snapshot_listing(options):
         return url
     else:
         #do the real stuff
-        r = requests.get(url)
+        r = requests.get(url, timeout=60)
         if r.status_code == 200:
             return r.text
         else:
@@ -82,7 +82,7 @@ def create_snapshot(options):
             if sleep_count > 20:
                 print("Snapshot still running, exceeded 10 sleep cycles")
                 exit(2)
-        snap_result = requests.put(url, json=payload)
+        snap_result = requests.put(url, json=payload, timeout=60)
         if snap_result.status_code == 200 and options.verbose:
             print("Requested: {}".format(snap_result.json()))
         else:

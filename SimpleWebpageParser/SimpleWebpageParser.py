@@ -7,7 +7,7 @@ class SimpleWebpageParser():
 		self.url = url
 
 	def getHTML(self):
-		r  = requests.get(self.url)
+		r  = requests.get(self.url, timeout=60)
 		data = r.text
 		soup = BeautifulSoup(data,"lxml")
 		return soup

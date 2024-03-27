@@ -43,7 +43,7 @@ class API:
         prarams = {API_PARAM: self.__long_url}
 
         try:
-            result = requests.post(API_URL, data = prarams)
+            result = requests.post(API_URL, data = prarams, timeout=60)
         except ConnectionError as err:
             return -1, err
 

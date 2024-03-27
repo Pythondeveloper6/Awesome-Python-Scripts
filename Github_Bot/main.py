@@ -14,7 +14,7 @@ class GithubBot():
     
     def get_user_details(self, args):
         url = self.base_url + "users/" + args[0]
-        res = requests.get(url)
+        res = requests.get(url, timeout=60)
         print('*********** USER:', args[0], '***************')
         if res.status_code == 200:
             data = json.loads(res.text)
@@ -28,7 +28,7 @@ class GithubBot():
 
     def get_repo_details(self, args):
         url = self.base_url + "repos/" + args[0] + "/" + args[1]
-        res = requests.get(url)
+        res = requests.get(url, timeout=60)
         print('********* USER:', args[0], '| REPO:', args[1], '*********')
         if res.status_code == 200:
             data = json.loads(res.text)

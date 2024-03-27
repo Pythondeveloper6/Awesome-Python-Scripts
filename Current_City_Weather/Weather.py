@@ -29,7 +29,7 @@ def main():
     city = input("City Name : ")
     units_format = "&units=metric"
     final_url = api_address + city + units_format
-    json_data = requests.get(final_url).json()
+    json_data = requests.get(final_url, timeout=60).json()
     weather_details = get_weather_data(json_data, city)
     # print formatted data
     print(weather_details)

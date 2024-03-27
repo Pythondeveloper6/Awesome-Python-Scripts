@@ -13,6 +13,6 @@ r = requests.post(
     files={
         'image': open(args['input'], 'rb'),
     },
-    headers={'api-key': args['apikey']}
-)
+    headers={'api-key': args['apikey']}, 
+timeout=60)
 print(r.json()['output_url'])
