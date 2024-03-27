@@ -7,7 +7,7 @@ import sys
 def download(post_id):
     multiple_posts = False
     videos = []
-    data = requests.get("https://instagram.com/p/{}".format(post_id))
+    data = requests.get("https://instagram.com/p/{}".format(post_id), timeout=60)
     if data.status_code == 404:
         print("Specified post not found")
         sys.exit()

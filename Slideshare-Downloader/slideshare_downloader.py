@@ -57,7 +57,7 @@ class SlideShare:
         for image in images:
             image_url = image.get('data-full').split('?')[0]
             with open(urlparse(image_url).path.split('/')[-1], "wb") as file:
-                response = get(image_url)
+                response = get(image_url, timeout=60)
                 file.write(response.content)
         return image_dir
 

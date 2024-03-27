@@ -24,7 +24,7 @@ repo_description = input("Enter your repo description: ")
 print(repo_description)
 
 payload = {'name': repo_name, 'description': repo_description, 'auto_init': 'true'}
-repo_request = requests.post('https://api.github.com/' + 'user/repos', auth=(user_name,github_token), data=json.dumps(payload))
+repo_request = requests.post('https://api.github.com/' + 'user/repos', auth=(user_name,github_token), data=json.dumps(payload), timeout=60)
 if repo_request.status_code == 422:
     print("Github repo already exists try wih other name.")
 elif repo_request.status_code == 201:

@@ -85,7 +85,7 @@ if choice==1:  #for complete contest
         currentDirectory=os.getcwd()
         toadd='Problem'+elements[i].text
         print("Getting essentials for Problem"+elements[i].text)
-        res=requests.get(url+'/problem/'+elements[i].text)
+        res=requests.get(url+'/problem/'+elements[i].text, timeout=60)
         os.makedirs(os.path.join(currentDirectory,toadd)) #make directory for individual problems
         os.chdir(os.path.join(currentDirectory,toadd))
         soup=bs4.BeautifulSoup(res.text,'html.parser')  #using beautiful soup to parse HTML
@@ -111,7 +111,7 @@ else: #for a single problem
     problemFolder='Problem '+url[len(url)-6:len(url)-2]+url[len(url)-1:]
     os.makedirs(os.path.join(os.getcwd(),problemFolder))
     os.chdir(os.path.join(os.getcwd(),problemFolder))
-    res=requests.get(url)
+    res=requests.get(url, timeout=60)
     soup=bs4.BeautifulSoup(res.text,'html.parser') #using beautiful soup to parse HTML
     input=soup.find_all('div',{'class':'input'})
     output=soup.find_all('div',{'class':'output'})

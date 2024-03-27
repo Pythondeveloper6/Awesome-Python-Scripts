@@ -7,10 +7,10 @@ import json
 username=input("Enter the username : ")
 
 try:
-	content = requests.get("https://www.instagram.com/"+username).content
+	content = requests.get("https://www.instagram.com/"+username, timeout=60).content
 	find=re.findall(r"logging_page_id.*show_suggested_profiles",str(content))
 	user_id=((find[0][16:]).split(","))[0][14:-1] # We get the user id of the username
-	jsonreq=requests.get("https://i.instagram.com/api/v1/users/"+user_id+"/info/").content # using a link we get the whole info of the person
+	jsonreq=requests.get("https://i.instagram.com/api/v1/users/"+user_id+"/info/", timeout=60).content # using a link we get the whole info of the person
 	jsonloaded=json.loads(jsonreq)
 	imgurl=jsonloaded["user"]["hd_profile_pic_url_info"]["url"]
 	wb.open_new_tab(imgurl)

@@ -13,7 +13,7 @@ URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 
 
 def get_url(url):
-    response = requests.get(url)
+    response = requests.get(url, timeout=60)
     content = response.content.decode("utf8")
     return content
 

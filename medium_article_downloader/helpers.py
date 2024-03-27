@@ -23,7 +23,7 @@ def get_topic():
 def extract_links(url):
 	'''Extract article links from url'''
 
-	html_response = requests.get(url)
+	html_response = requests.get(url, timeout=60)
 	parsed_response = bs4.BeautifulSoup(html_response.text, features='html5lib')
 	article_list = parsed_response.select('h3 > a')
 	return article_list
@@ -32,7 +32,7 @@ def extract_links(url):
 def medium_text(url):
 	'''Extract text from a medium article link.'''
 
-	html_response = requests.get(url)
+	html_response = requests.get(url, timeout=60)
 	parsed_response = bs4.BeautifulSoup(html_response.text, features='html5lib')
 	tag_list = parsed_response.find_all(['h1', 'p', 'h2'])
 
